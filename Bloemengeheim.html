@@ -5,28 +5,505 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Het Geheim van de Gloeiende Bloemen - Musical</title>
     <style>
-        /* Alle CSS blijft hetzelfde als voorheen, alleen de lyrics-content wordt uitgebreid */
+        /* Algemene stijlen */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         
-        /* [Hier komt alle CSS van de vorige detailpagina] */
+        :root {
+            --galaxy-dark: #0a0a2a;
+            --galaxy-purple: #4a1e6b;
+            --galaxy-blue: #2a2a72;
+            --galaxy-pink: #b0306a;
+            --galaxy-light: #8b7db8;
+            --galaxy-star: #ffffff;
+            --text: #e6e6ff;
+        }
         
-        /* Voeg deze toe aan de bestaande CSS */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--galaxy-dark) 0%, var(--galaxy-blue) 50%, var(--galaxy-purple) 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Galaxy sterren effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, var(--galaxy-star), transparent),
+                radial-gradient(2px 2px at 40px 70px, var(--galaxy-star), transparent),
+                radial-gradient(1px 1px at 90px 40px, var(--galaxy-star), transparent),
+                radial-gradient(1px 1px at 130px 80px, var(--galaxy-star), transparent),
+                radial-gradient(2px 2px at 160px 30px, var(--galaxy-star), transparent),
+                radial-gradient(1px 1px at 210px 60px, var(--galaxy-star), transparent),
+                radial-gradient(2px 2px at 250px 90px, var(--galaxy-star), transparent),
+                radial-gradient(1px 1px at 290px 40px, var(--galaxy-star), transparent),
+                radial-gradient(2px 2px at 320px 70px, var(--galaxy-star), transparent),
+                radial-gradient(1px 1px at 360px 20px, var(--galaxy-star), transparent);
+            background-repeat: repeat;
+            background-size: 400px 400px;
+            opacity: 0.4;
+            z-index: -1;
+            animation: twinkle 20s infinite linear;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.3; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(to right, var(--galaxy-purple), var(--galaxy-pink));
+            color: var(--text);
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><path d="M50,10 C60,20 70,30 80,40 C90,50 95,60 90,70 C85,80 70,85 50,90 C30,85 15,80 10,70 C5,60 10,50 20,40 C30,30 40,20 50,10 Z" fill="white"/></svg>');
+            background-size: 150px;
+            opacity: 0.1;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            opacity: 0.9;
+        }
+        
+        /* Navigatie */
+        nav {
+            background: linear-gradient(to right, var(--galaxy-blue), var(--galaxy-purple));
+            padding: 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            color: var(--text);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
         .back-btn {
             display: inline-block;
             background: linear-gradient(to right, var(--galaxy-blue), var(--galaxy-light));
             color: var(--text);
-            padding: 10px 20px;
+            padding: 8px 16px;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 600;
-            margin-bottom: 20px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(42, 42, 114, 0.5);
             border: 1px solid var(--galaxy-light);
+            font-size: 0.9rem;
         }
         
         .back-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(42, 42, 114, 0.7);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin: 0;
+        }
+        
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 18px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255,255,255,0.15);
+            border-bottom: 3px solid var(--galaxy-pink);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+        }
+        
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--text);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hoofdinhoud */
+        main {
+            padding: 40px 0;
+        }
+        
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 80px;
+        }
+        
+        section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--text);
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
+            text-shadow: 0 0 10px rgba(181, 101, 224, 0.7);
+        }
+        
+        section h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--galaxy-pink), var(--galaxy-light));
+            box-shadow: 0 0 10px var(--galaxy-pink);
+        }
+        
+        /* Script sectie */
+        .script-container {
+            background: rgba(10, 10, 42, 0.7);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--galaxy-light);
+        }
+        
+        .script-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        
+        .embedded-script {
+            width: 100%;
+            height: 600px;
+            border: 1px solid var(--galaxy-light);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        /* Fullscreen script */
+        .fullscreen-script {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--galaxy-dark);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .fullscreen-script.active {
+            display: block;
+        }
+        
+        .fullscreen-header {
+            background: linear-gradient(to right, var(--galaxy-purple), var(--galaxy-pink));
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .fullscreen-header h3 {
+            color: var(--text);
+            margin: 0;
+        }
+        
+        .close-fullscreen {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .close-fullscreen:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .fullscreen-iframe {
+            width: 100%;
+            height: calc(100% - 60px);
+            border: none;
+        }
+        
+        /* Muziek sectie */
+        .music-section {
+            background: rgba(10, 10, 42, 0.7);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--galaxy-light);
+        }
+        
+        .music-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        
+        .song-container {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(42, 42, 114, 0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 1px solid var(--galaxy-light);
+        }
+        
+        .song-container h3 {
+            color: var(--text);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+            text-shadow: 0 0 5px var(--galaxy-pink);
+        }
+        
+        .music-player audio {
+            width: 100%;
+            max-width: 500px;
+            margin: 15px 0;
+            border-radius: 30px;
+            filter: drop-shadow(0 0 5px var(--galaxy-pink));
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--galaxy-purple), var(--galaxy-pink));
+            color: var(--text);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(74, 30, 107, 0.5);
+            font-size: 0.9rem;
+            border: 1px solid var(--galaxy-light);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(74, 30, 107, 0.7);
+            background: linear-gradient(to right, var(--galaxy-pink), var(--galaxy-purple));
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        /* Songtekst sectie */
+        .lyrics-section {
+            background: rgba(10, 10, 42, 0.7);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--galaxy-light);
+            margin-bottom: 30px;
+        }
+        
+        .lyrics-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        
+        .lyrics-section h3 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--galaxy-light);
+            font-size: 1.5rem;
+            text-shadow: 0 0 5px var(--galaxy-pink);
+        }
+        
+        .lyrics-content {
+            white-space: pre-line;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .character {
+            font-weight: bold;
+            color: var(--galaxy-light);
+            margin-top: 25px;
+            display: block;
+            font-size: 1.1rem;
+            text-shadow: 0 0 5px var(--galaxy-pink);
+        }
+        
+        .refrain {
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 3px solid var(--galaxy-pink);
+            box-shadow: -5px 0 10px rgba(176, 48, 106, 0.3);
+        }
+        
+        .bridge {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(176, 48, 106, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid var(--galaxy-light);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, var(--galaxy-blue), var(--galaxy-purple));
+            color: var(--text);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: linear-gradient(to bottom, var(--galaxy-blue), var(--galaxy-purple));
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.3);
+                z-index: 99;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 0;
+                width: 100%;
+            }
+            
+            .nav-link {
+                padding: 1rem;
+                width: 100%;
+                display: block;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
+            section {
+                margin-bottom: 40px;
+            }
+            
+            .music-section, .lyrics-section, .script-container {
+                padding: 20px;
+            }
+            
+            .embedded-script {
+                height: 400px;
+            }
+            
+            .btn-container {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -43,7 +520,7 @@
     <nav>
         <div class="nav-container">
             <div class="logo">
-                <a href="index.html" class="back-btn">← Terug</a>
+                <a href="index.html" class="back-btn">← Terug naar Overzicht</a>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#script" class="nav-link">Script</a></li>
@@ -125,6 +602,19 @@
                         <a href="Samen in het Licht (instrumental).mp3" class="download-btn" download>Download Samen in het Licht (Instrumentaal)</a>
                     </div>
                 </div>
+                
+                <div class="song-container">
+                    <h3>Het Grote Avontuur</h3>
+                    <div class="music-player">
+                        <audio controls>
+                            <source src="Het Grote Avontuur.mp3" type="audio/mpeg">
+                            Je browser ondersteunt het audio element niet.
+                        </audio>
+                    </div>
+                    <div class="btn-container">
+                        <a href="Het Grote Avontuur.mp3" class="download-btn" download>Download Het Grote Avontuur</a>
+                    </div>
+                </div>
             </div>
         </section>
         
@@ -133,8 +623,8 @@
             <h2>Songteksten</h2>
             
             <!-- Lied 1: Het Bloemenland -->
-            <div class="lyrics-section" style="margin-bottom: 40px;">
-                <h3 style="text-align: center; margin-bottom: 20px; color: var(--galaxy-light);">Het Bloemenland</h3>
+            <div class="lyrics-section">
+                <h3>Het Bloemenland</h3>
                 <div class="lyrics-content">
 <span class="character">(Couplet 1 - Floortje)</span>
 In het bos waar 's ochtends de zon weer verschijnt,
@@ -182,7 +672,7 @@ In het allermooiste bloemenland. (lang vasthouden)
             
             <!-- Lied 2: Samen in het Licht -->
             <div class="lyrics-section">
-                <h3 style="text-align: center; margin-bottom: 20px; color: var(--galaxy-light);">Samen in het Licht</h3>
+                <h3>Samen in het Licht</h3>
                 <div class="lyrics-content">
 <span class="character">(INTRO – ALLEMAAL)</span>
 De ochtend breekt, het wonder start,
@@ -250,6 +740,64 @@ Geen angst, geen pijn, geen duister meer,
 Wij zijn het wonder… en samen, samen steeds weer!
                 </div>
             </div>
+            
+            <!-- Lied 3: Het Grote Avontuur -->
+            <div class="lyrics-section">
+                <h3>Het Grote Avontuur</h3>
+                <div class="lyrics-content">
+<span class="character">(Iedereen zingt samen)</span>
+
+<span class="character">Couplet 1</span>
+We renden door het wonderland, het was soms knettergek,
+Met raadsels, rare puzzels en gevaar om elke hoek en elke plek.
+Maar nu staan we te juichen, want het einde is bereikt—
+De spanning was fantastisch en het avontuur was ongeëvenaard en uniek!
+
+<div class="refrain">
+<span class="character">Refrein</span>
+Het grote avontuur, we vieren het vandaag!
+De lucht zit vol met magie en de wereld lacht ons aan.
+Het grote avontuur, we zingen luid en blij,
+Want alles wat we samen deden blijft voor altijd bij ons—ja, bij mij!
+</div>
+
+<span class="character">Couplet 2</span>
+We doken door geheime deuren, verdwenen in een vlucht,
+We lachten om de chaos en dansten in de nachtelijke lucht.
+Maar nu klinkt onze overwinning als een vrolijke fanfare,
+We springen naar de toekomst, klaar voor nóg meer nieuwe verhalen!
+
+<div class="refrain">
+<span class="character">Refrein</span>
+Het grote avontuur, we vieren het vandaag!
+De lucht zit vol met magie en de wereld lacht ons aan.
+Het grote avontuur, we zingen luid en blij,
+Want alles wat we samen deden blijft voor altijd bij ons—ja, bij mij!
+</div>
+
+<div class="bridge">
+<span class="character">Bridge (opzwepend, vrolijk-spannend)</span>
+Kom, we gaan!
+De wereld roept ons naamloos verder!
+Kom, we gaan!
+Geen angst meer voor het onbekende!
+Kom, we gaan!
+De horizon vol licht—
+Daar begint ons nieuwe zicht!
+</div>
+
+<div class="refrain">
+<span class="character">Slotrefrein (groot, feestelijk)</span>
+Het grote avontuur, het eindigt maar het blijft,
+De energie, de vreugde—alles wat ons echt beschrijft.
+Het grote avontuur, we roepen het omhoog:
+Dit einde is een start,
+En samen zijn we… hoog!
+</div>
+
+<span class="character">(Vrolijk slotakkoord. Grote feestelijke eindpose.) 🎉✨</span>
+                </div>
+            </div>
         </section>
     </main>
     
@@ -261,7 +809,45 @@ Wij zijn het wonder… en samen, samen steeds weer!
     </footer>
 
     <script>
-        // [Hier komt alle JavaScript van de vorige detailpagina]
+        // Hamburger menu functionaliteit
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Sluit menu wanneer er op een link wordt geklikt
+            document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }));
+
+            // Fullscreen script functionaliteit
+            const fullscreenScript = document.getElementById('fullscreenScript');
+            const openFullscreenBtn = document.getElementById('openFullscreen');
+            const closeFullscreenBtn = document.getElementById('closeFullscreen');
+
+            openFullscreenBtn.addEventListener('click', () => {
+                fullscreenScript.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            closeFullscreenBtn.addEventListener('click', () => {
+                fullscreenScript.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Sluit fullscreen met Escape toets
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && fullscreenScript.classList.contains('active')) {
+                    fullscreenScript.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
     </script>
 </body>
 </html>
