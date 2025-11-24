@@ -13,11 +13,25 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
+        :root {
+            --primary: #2E8B57;
+            --primary-light: #3CB371;
+            --secondary: #FFD700;
+            --text: #333;
+            --background: #f5f7fa;
+            --white: #ffffff;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-            color: #333;
+            background: linear-gradient(135deg, var(--background) 0%, #e4edf5 100%);
+            color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
+            overflow-x: hidden;
         }
         
         .container {
@@ -28,9 +42,9 @@
         
         /* Header */
         header {
-            background: linear-gradient(to right, #2E8B57, #3CB371);
-            color: white;
-            padding: 30px 0;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            color: var(--white);
+            padding: 25px 0;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             position: relative;
@@ -66,97 +80,136 @@
         
         /* Navigatie */
         nav {
-            background-color: #2E8B57;
+            background-color: var(--primary);
             padding: 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
-        nav ul {
+        .nav-container {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            color: var(--white);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .nav-menu {
+            display: flex;
             list-style: none;
         }
         
-        nav li {
+        .nav-item {
             margin: 0;
         }
         
-        nav a {
-            color: white;
+        .nav-link {
+            color: var(--white);
             text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
-            padding: 15px 25px;
+            padding: 18px 20px;
             display: block;
             transition: all 0.3s ease;
             border-bottom: 3px solid transparent;
         }
         
-        nav a:hover {
+        .nav-link:hover {
             background-color: rgba(255,255,255,0.15);
-            border-bottom: 3px solid #FFD700;
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+        }
+        
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--white);
+            border-radius: 3px;
+            transition: all 0.3s ease;
         }
         
         /* Hoofdinhoud */
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            height: calc(100vh - 160px);
+        main {
+            padding: 40px 0;
         }
         
-        /* Script sectie - Fullscreen */
-        .script-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 0;
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 80px;
         }
         
-        .script-header {
-            background-color: white;
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            z-index: 10;
-        }
-        
-        .script-header h2 {
+        section h2 {
             text-align: center;
-            color: #2E8B57;
-            font-size: 1.8rem;
+            margin-bottom: 40px;
+            color: var(--primary);
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
         }
         
+        section h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+        }
+        
+        /* Script sectie */
         .script-container {
-            flex: 1;
-            background-color: white;
-            margin: 0;
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .script-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
         }
         
         .embedded-script {
             width: 100%;
-            height: 100%;
-            border: none;
+            height: 600px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
         }
         
         /* Muziek sectie */
         .music-section {
-            background-color: white;
+            background-color: var(--white);
             border-radius: 12px;
             padding: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            margin: 20px 0;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .music-section:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-        }
-        
-        .music-section h3 {
-            color: #2E8B57;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            text-align: center;
         }
         
         .song-container {
@@ -167,8 +220,8 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
         
-        .song-container h4 {
-            color: #2E8B57;
+        .song-container h3 {
+            color: var(--primary);
             margin-bottom: 15px;
             font-size: 1.3rem;
             text-align: center;
@@ -183,8 +236,8 @@
         
         .download-btn {
             display: inline-block;
-            background: linear-gradient(to right, #2E8B57, #3CB371);
-            color: white;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            color: var(--white);
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 30px;
@@ -209,11 +262,10 @@
         
         /* Songtekst sectie */
         .lyrics-section {
-            background-color: white;
+            background-color: var(--white);
             border-radius: 12px;
             padding: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            margin: 20px 0;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
@@ -232,7 +284,7 @@
         
         .character {
             font-weight: bold;
-            color: #2E8B57;
+            color: var(--primary);
             margin-top: 25px;
             display: block;
             font-size: 1.1rem;
@@ -241,15 +293,16 @@
         .refrain {
             margin: 20px 0;
             padding-left: 20px;
-            border-left: 3px solid #3CB371;
+            border-left: 3px solid var(--primary-light);
         }
         
         /* Footer */
         footer {
             background-color: #2E7D32;
-            color: white;
+            color: var(--white);
             text-align: center;
             padding: 20px 0;
+            margin-top: 50px;
         }
         
         /* Responsive design */
@@ -258,69 +311,66 @@
                 font-size: 2rem;
             }
             
-            nav ul {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
                 flex-direction: column;
-                align-items: center;
-            }
-            
-            nav li {
+                background-color: var(--primary);
                 width: 100%;
                 text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                z-index: 99;
             }
             
-            nav a {
-                padding: 12px;
+            .nav-menu.active {
+                left: 0;
             }
             
-            .main-content {
-                height: auto;
+            .nav-item {
+                margin: 0;
+                width: 100%;
             }
             
-            .music-section, .lyrics-section {
+            .nav-link {
+                padding: 1rem;
+                width: 100%;
+                display: block;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
+            section {
+                margin-bottom: 40px;
+            }
+            
+            .music-section, .lyrics-section, .script-container {
                 padding: 20px;
+            }
+            
+            .embedded-script {
+                height: 400px;
             }
             
             .btn-container {
                 flex-direction: column;
                 align-items: center;
             }
-        }
-        
-        /* Tab knoppen */
-        .tab-buttons {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        
-        .tab-btn {
-            background: white;
-            border: none;
-            padding: 12px 25px;
-            margin: 0 10px;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-        }
-        
-        .tab-btn.active {
-            background: linear-gradient(to right, #2E8B57, #3CB371);
-            color: white;
-        }
-        
-        .tab-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
         }
     </style>
 </head>
@@ -335,43 +385,39 @@
     
     <!-- Navigatie -->
     <nav>
-        <div class="container">
-            <ul>
-                <li><a href="#script">Script</a></li>
-                <li><a href="#muziek">Muziek</a></li>
-                <li><a href="#songtekst">Songtekst</a></li>
+        <div class="nav-container">
+            <div class="logo">Musical Docs</div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#script" class="nav-link">Script</a></li>
+                <li class="nav-item"><a href="#muziek" class="nav-link">Muziek</a></li>
+                <li class="nav-item"><a href="#songtekst" class="nav-link">Songtekst</a></li>
             </ul>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
     
     <!-- Hoofdinhoud -->
     <main class="container">
-        <!-- Tab knoppen voor mobiel -->
-        <div class="tab-buttons">
-            <button class="tab-btn active" data-tab="script">Script</button>
-            <button class="tab-btn" data-tab="muziek">Muziek</button>
-            <button class="tab-btn" data-tab="songtekst">Songtekst</button>
-        </div>
-        
-        <!-- Script sectie - Fullscreen -->
-        <section id="script" class="tab-content active">
-            <div class="main-content">
-                <div class="script-header">
-                    <h2>Volledig Musical Script</h2>
-                </div>
-                <div class="script-container">
-                    <iframe src="https://docs.google.com/document/d/11QDVMf6brOXmNw6eiF3rCPZrNmwVDiDTGNsNtWt0aB0/preview" class="embedded-script" frameborder="0"></iframe>
+        <!-- Script sectie -->
+        <section id="script">
+            <h2>Script</h2>
+            <div class="script-container">
+                <div class="embedded-script">
+                    <iframe src="https://docs.google.com/document/d/11QDVMf6brOXmNw6eiF3rCPZrNmwVDiDTGNsNtWt0aB0/preview" width="100%" height="100%" frameborder="0"></iframe>
                 </div>
             </div>
         </section>
         
         <!-- Muziek sectie -->
-        <section id="muziek" class="tab-content">
+        <section id="muziek">
+            <h2>Muziek</h2>
             <div class="music-section">
-                <h3>Muziek uit de Musical</h3>
-                
                 <div class="song-container">
-                    <h4>Het Bloemenland</h4>
+                    <h3>Het Bloemenland</h3>
                     <div class="music-player">
                         <audio controls>
                             <source src="Het Bloemenland.mp3" type="audio/mpeg">
@@ -384,7 +430,7 @@
                 </div>
                 
                 <div class="song-container">
-                    <h4>Samen in het Licht (Faster)</h4>
+                    <h3>Samen in het Licht (Faster)</h3>
                     <div class="music-player">
                         <audio controls>
                             <source src="Samen in het Licht (Faster).mp3" type="audio/mpeg">
@@ -397,7 +443,7 @@
                 </div>
                 
                 <div class="song-container">
-                    <h4>Samen in het Licht (Instrumentaal)</h4>
+                    <h3>Samen in het Licht (Instrumentaal)</h3>
                     <div class="music-player">
                         <audio controls>
                             <source src="Samen in het Licht (instrumental).mp3" type="audio/mpeg">
@@ -412,9 +458,9 @@
         </section>
         
         <!-- Songtekst sectie -->
-        <section id="songtekst" class="tab-content">
+        <section id="songtekst">
+            <h2>Songtekst</h2>
             <div class="lyrics-section">
-                <h3>Songtekst: Het Bloemenland</h3>
                 <div class="lyrics-content">
 <span class="character">(Couplet 1 - Floortje)</span>
 In het bos waar 's ochtends de zon weer verschijnt,
@@ -470,40 +516,21 @@ In het allermooiste bloemenland. (lang vasthouden)
     </footer>
 
     <script>
-        // Tab functionaliteit
+        // Hamburger menu functionaliteit
         document.addEventListener('DOMContentLoaded', function() {
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
             
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // Verwijder active class van alle knoppen en content
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
-                    
-                    // Voeg active class toe aan geklikte knop en bijbehorende content
-                    btn.classList.add('active');
-                    const tabId = btn.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
-                });
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
             });
             
-            // Navigatie koppeling met tabs
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href').substring(1);
-                    
-                    // Verwijder active class van alle knoppen en content
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
-                    
-                    // Activeer de juiste tab
-                    document.querySelector(`.tab-btn[data-tab="${targetId}"]`).classList.add('active');
-                    document.getElementById(targetId).classList.add('active');
-                });
-            });
+            // Sluit menu wanneer er op een link wordt geklikt
+            document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }));
         });
     </script>
 </body>
