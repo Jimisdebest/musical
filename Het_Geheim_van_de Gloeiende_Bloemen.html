@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Het Geheim van de Gloeiende Bloemen - Musical</title>
+    <style>
+        /* Alle CSS blijft hetzelfde als voorheen, alleen de lyrics-content wordt uitgebreid */
+        
+        /* [Hier komt alle CSS van de vorige detailpagina] */
+        
+        /* Voeg deze toe aan de bestaande CSS */
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--galaxy-blue), var(--galaxy-light));
+            color: var(--text);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(42, 42, 114, 0.5);
+            border: 1px solid var(--galaxy-light);
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(42, 42, 114, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Musical: Het Geheim van de Gloeiende Bloemen</h1>
+            <p>Documentatiecentrum - Script, muziek en songteksten</p>
+        </div>
+    </header>
+    
+    <!-- Navigatie -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html" class="back-btn">← Terug</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#script" class="nav-link">Script</a></li>
+                <li class="nav-item"><a href="#muziek" class="nav-link">Muziek</a></li>
+                <li class="nav-item"><a href="#songteksten" class="nav-link">Songteksten</a></li>
+            </ul>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Fullscreen script -->
+    <div class="fullscreen-script" id="fullscreenScript">
+        <div class="fullscreen-header">
+            <h3>Musical Script - Het Geheim van de Gloeiende Bloemen</h3>
+            <button class="close-fullscreen" id="closeFullscreen">✕</button>
+        </div>
+        <iframe src="https://docs.google.com/document/d/11QDVMf6brOXmNw6eiF3rCPZrNmwVDiDTGNsNtWt0aB0/preview" class="fullscreen-iframe" frameborder="0"></iframe>
+    </div>
+    
+    <!-- Hoofdinhoud -->
+    <main class="container">
+        <!-- Script sectie -->
+        <section id="script">
+            <h2>Script</h2>
+            <div class="script-container">
+                <p>Klik op de onderstaande knop om het script in fullscreen te bekijken:</p>
+                <div class="btn-container" style="margin-top: 20px;">
+                    <button class="download-btn" id="openFullscreen">Script in Fullscreen Openen</button>
+                </div>
+                <div class="embedded-script" style="margin-top: 20px;">
+                    <iframe src="https://docs.google.com/document/d/11QDVMf6brOXmNw6eiF3rCPZrNmwVDiDTGNsNtWt0aB0/preview" width="100%" height="100%" frameborder="0"></iframe>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Muziek sectie -->
+        <section id="muziek">
+            <h2>Muziek</h2>
+            <div class="music-section">
+                <div class="song-container">
+                    <h3>Het Bloemenland</h3>
+                    <div class="music-player">
+                        <audio controls>
+                            <source src="Het Bloemenland.mp3" type="audio/mpeg">
+                            Je browser ondersteunt het audio element niet.
+                        </audio>
+                    </div>
+                    <div class="btn-container">
+                        <a href="Het Bloemenland.mp3" class="download-btn" download>Download Het Bloemenland</a>
+                    </div>
+                </div>
+                
+                <div class="song-container">
+                    <h3>Samen in het Licht (Faster)</h3>
+                    <div class="music-player">
+                        <audio controls>
+                            <source src="Samen in het Licht (Faster).mp3" type="audio/mpeg">
+                            Je browser ondersteunt het audio element niet.
+                        </audio>
+                    </div>
+                    <div class="btn-container">
+                        <a href="Samen in het Licht (Faster).mp3" class="download-btn" download>Download Samen in het Licht (Faster)</a>
+                    </div>
+                </div>
+                
+                <div class="song-container">
+                    <h3>Samen in het Licht (Instrumentaal)</h3>
+                    <div class="music-player">
+                        <audio controls>
+                            <source src="Samen in het Licht (instrumental).mp3" type="audio/mpeg">
+                            Je browser ondersteunt het audio element niet.
+                        </audio>
+                    </div>
+                    <div class="btn-container">
+                        <a href="Samen in het Licht (instrumental).mp3" class="download-btn" download>Download Samen in het Licht (Instrumentaal)</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Songteksten sectie -->
+        <section id="songteksten">
+            <h2>Songteksten</h2>
+            
+            <!-- Lied 1: Het Bloemenland -->
+            <div class="lyrics-section" style="margin-bottom: 40px;">
+                <h3 style="text-align: center; margin-bottom: 20px; color: var(--galaxy-light);">Het Bloemenland</h3>
+                <div class="lyrics-content">
+<span class="character">(Couplet 1 - Floortje)</span>
+In het bos waar 's ochtends de zon weer verschijnt,
+Waar het dauwlicht danst en het zachtjes geurt,
+Zitten de feeën met vleugeltjes zwaar,
+Ze zijn hun glans en hun glimlach even kwijt dit jaar.
+
+<div class="refrain">
+<span class="character">(Refrein - Sanne)</span>
+Maar dan groeien de bloemen, roze en blauw,
+Ze fluisteren zachtjes: "We houden van jou."
+En de feeën beginnen weer vrolijk te zweven,
+Bloemen geven kleur aan het feeën leven!
+</div>
+
+<span class="character">(Couplet 2 - Floortje)</span>
+Een tulp tikt een traan van een fee'tje weg,
+Een madeliefje maakt haar hartje weer blij,
+En in een kring van zonnebloemen groot,
+Vinden de feeën opnieuw hun licht en hun hoop.
+
+<div class="refrain">
+<span class="character">(Refrein - Sanne - Keet - Naoual)</span>
+Want daar groeien de bloemen, geel als de zon,
+En elke fee voelt hoe haar lach weer begon.
+Ze dansen en zingen, licht als de wind,
+Met bloemen die troost geven, keer op keer, bemind.
+</div>
+
+<span class="character">(Bridge - Floortje)</span>
+En als de maan haar zilveren stralen spreidt,
+Worden de bloemen tot sterren gewijd.
+De feeën fluisteren dankbaar zacht:
+"Jullie hebben ons weer blij gemaakt."
+
+<div class="refrain">
+<span class="character">(Laatste Refrein - Iedereen)</span>
+Ja, dankzij de bloemen, rood, paars en groen,
+Kunnen de feeën weer lachen en dromen doen.
+Ze zweven en zingen, hand in hand,
+In het allermooiste bloemenland. (lang vasthouden)
+</div>
+                </div>
+            </div>
+            
+            <!-- Lied 2: Samen in het Licht -->
+            <div class="lyrics-section">
+                <h3 style="text-align: center; margin-bottom: 20px; color: var(--galaxy-light);">Samen in het Licht</h3>
+                <div class="lyrics-content">
+<span class="character">(INTRO – ALLEMAAL)</span>
+De ochtend breekt, het wonder start,
+Wij zingen samen, hand in hand, één hart.
+De wereld ademt zacht en licht,
+Vandaag verandert ons gezicht.
+
+<span class="character">(COUPLET – ALLEMAAL)</span>
+Wij lopen door sneeuw en door dromen,
+Wij voelen wat nog gaat komen.
+Met vrienden die naast ons staan,
+Kunnen wij alles aan.
+
+<span class="character">(SOLO 1 – KEET & NAOUAL (duet))</span>
+(Alle anderen zwijgen zacht)
+
+<span class="character">KEET:</span>
+Het lot beweegt, het fluistert zacht,
+
+<span class="character">NAOUAL:</span>
+Wij leiden dromen door de nacht,
+
+<span class="character">SANNE:</span>
+Er wordt op ons gewaaaaaaacht,
+
+<span class="character">SAMEN:</span>
+Wij horen sterren, wij voelen tijd,
+Het lot geeft hoop en zekerheid.
+
+<div class="refrain">
+<span class="character">(REFREIN – ALLEMAAL)</span>
+Samen staan wij sterk vandaag,
+Niemand blijft alleen, geen vraag.
+Wij zoeken licht en vinden kracht,
+Wij zingen door de hele nacht.
+</div>
+
+<span class="character">(SOLO 2 – REAVEN (Karen / Meesterdief – Bob 456))</span>
+(Muziek wordt stiller, iedereen kijkt naar haar)
+
+<span class="character">REAVEN:</span>
+Ik was te lang een schaduw, te lang verdwaald, alleen, 
+Maar nu kijk ik naar jullie… en eindelijk zie ik weer wat mooi kan zijn.
+Ik wil nooit meer slecht zijn — echt waar, het spijt me diep,
+Ik kies nu voor het licht… en voor de vrienden die ik liep.
+
+<div class="refrain">
+<span class="character">(REFREIN – ALLEMAAL)</span>
+Samen staan wij sterk vandaag,
+Niemand blijft alleen, geen vraag.
+Wij zoeken licht en vinden kracht,
+Wij zingen door de hele nacht.
+</div>
+
+<span class="character">(BRIDGE – ALLEMAAL)</span>
+Oooooh… de toekomst wordt warm en klaar,
+Oooooh… wij dragen elkaar.
+Oooooh… het licht dat in ons leeft,
+Is sterker dan de nacht die beeft.
+
+<span class="character">(GROTE FINALE – ALLEMAAL)</span>
+Wij kiezen het licht, wij bouwen het nieuw,
+Wij lopen als één, met liefde als vuul.
+Geen angst, geen pijn, geen duister meer,
+Wij zijn het wonder… en samen, samen steeds weer!
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Musical "Het Geheim van de Gloeiende Bloemen" - Alle rechten voorbehouden</p>
+        </div>
+    </footer>
+
+    <script>
+        // [Hier komt alle JavaScript van de vorige detailpagina]
+    </script>
+</body>
+</html>
