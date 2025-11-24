@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Musical - Het Geheim van de Gloeiende Bloemen</title>
+    <title>Musicals Overzicht</title>
     <style>
-        /* Algemene stijlen */
         * {
             margin: 0;
             padding: 0;
@@ -23,20 +22,14 @@
             --text: #e6e6ff;
         }
         
-        html {
-            scroll-behavior: smooth;
-        }
-        
         body {
             background: linear-gradient(135deg, var(--galaxy-dark) 0%, var(--galaxy-blue) 50%, var(--galaxy-purple) 100%);
             color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
-            overflow-x: hidden;
             position: relative;
         }
 
-        /* Galaxy sterren effect */
         body::before {
             content: "";
             position: fixed;
@@ -48,13 +41,7 @@
                 radial-gradient(2px 2px at 20px 30px, var(--galaxy-star), transparent),
                 radial-gradient(2px 2px at 40px 70px, var(--galaxy-star), transparent),
                 radial-gradient(1px 1px at 90px 40px, var(--galaxy-star), transparent),
-                radial-gradient(1px 1px at 130px 80px, var(--galaxy-star), transparent),
-                radial-gradient(2px 2px at 160px 30px, var(--galaxy-star), transparent),
-                radial-gradient(1px 1px at 210px 60px, var(--galaxy-star), transparent),
-                radial-gradient(2px 2px at 250px 90px, var(--galaxy-star), transparent),
-                radial-gradient(1px 1px at 290px 40px, var(--galaxy-star), transparent),
-                radial-gradient(2px 2px at 320px 70px, var(--galaxy-star), transparent),
-                radial-gradient(1px 1px at 360px 20px, var(--galaxy-star), transparent);
+                radial-gradient(1px 1px at 130px 80px, var(--galaxy-star), transparent);
             background-repeat: repeat;
             background-size: 400px 400px;
             opacity: 0.4;
@@ -74,597 +61,127 @@
             padding: 0 20px;
         }
         
-        /* Header */
         header {
             background: linear-gradient(to right, var(--galaxy-purple), var(--galaxy-pink));
             color: var(--text);
-            padding: 25px 0;
+            padding: 40px 0;
             text-align: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><path d="M50,10 C60,20 70,30 80,40 C90,50 95,60 90,70 C85,80 70,85 50,90 C30,85 15,80 10,70 C5,60 10,50 20,40 C30,30 40,20 50,10 Z" fill="white"/></svg>');
-            background-size: 150px;
-            opacity: 0.1;
         }
         
         header h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            position: relative;
         }
         
         header p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             max-width: 800px;
             margin: 0 auto;
-            position: relative;
             opacity: 0.9;
         }
         
-        /* Navigatie */
-        nav {
-            background: linear-gradient(to right, var(--galaxy-blue), var(--galaxy-purple));
-            padding: 0;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        .musicals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 50px 0;
         }
         
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-        
-        .logo {
-            color: var(--text);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-item {
-            margin: 0;
-        }
-        
-        .nav-link {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 18px 20px;
-            display: block;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-        }
-        
-        .nav-link:hover {
-            background-color: rgba(255,255,255,0.15);
-            border-bottom: 3px solid var(--galaxy-pink);
-        }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            background: none;
-            border: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-        }
-        
-        .hamburger span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background-color: var(--text);
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-        
-        /* Hoofdinhoud */
-        main {
-            padding: 40px 0;
-        }
-        
-        section {
-            margin-bottom: 60px;
-            scroll-margin-top: 80px;
-        }
-        
-        section h2 {
+        .musical-card {
+            background: rgba(10, 10, 42, 0.7);
+            border-radius: 15px;
+            padding: 30px;
             text-align: center;
-            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            border: 1px solid var(--galaxy-light);
+            cursor: pointer;
+        }
+        
+        .musical-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: var(--galaxy-pink);
+        }
+        
+        .musical-card h2 {
             color: var(--text);
-            font-size: 2.2rem;
-            position: relative;
-            padding-bottom: 15px;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
             text-shadow: 0 0 10px rgba(181, 101, 224, 0.7);
         }
         
-        section h2::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(to right, var(--galaxy-pink), var(--galaxy-light));
-            box-shadow: 0 0 10px var(--galaxy-pink);
+        .musical-card p {
+            margin-bottom: 20px;
+            opacity: 0.9;
         }
         
-        /* Script sectie */
-        .script-container {
-            background: rgba(10, 10, 42, 0.7);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid var(--galaxy-light);
-        }
-        
-        .script-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-        }
-        
-        .embedded-script {
-            width: 100%;
-            height: 600px;
-            border: 1px solid var(--galaxy-light);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        /* Fullscreen script */
-        .fullscreen-script {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--galaxy-dark);
-            z-index: 1000;
-            display: none;
-        }
-        
-        .fullscreen-script.active {
-            display: block;
-        }
-        
-        .fullscreen-header {
-            background: linear-gradient(to right, var(--galaxy-purple), var(--galaxy-pink));
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .fullscreen-header h3 {
-            color: var(--text);
-            margin: 0;
-        }
-        
-        .close-fullscreen {
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-        
-        .close-fullscreen:hover {
-            background: rgba(255,255,255,0.2);
-        }
-        
-        .fullscreen-iframe {
-            width: 100%;
-            height: calc(100% - 60px);
-            border: none;
-        }
-        
-        /* Muziek sectie */
-        .music-section {
-            background: rgba(10, 10, 42, 0.7);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid var(--galaxy-light);
-        }
-        
-        .music-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-        }
-        
-        .song-container {
-            margin-bottom: 30px;
-            padding: 20px;
-            border-radius: 10px;
-            background: rgba(42, 42, 114, 0.5);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            border: 1px solid var(--galaxy-light);
-        }
-        
-        .song-container h3 {
-            color: var(--text);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            text-align: center;
-            text-shadow: 0 0 5px var(--galaxy-pink);
-        }
-        
-        .music-player audio {
-            width: 100%;
-            max-width: 500px;
-            margin: 15px 0;
-            border-radius: 30px;
-            filter: drop-shadow(0 0 5px var(--galaxy-pink));
-        }
-        
-        .download-btn {
+        .btn {
             display: inline-block;
             background: linear-gradient(to right, var(--galaxy-purple), var(--galaxy-pink));
             color: var(--text);
-            padding: 10px 20px;
+            padding: 12px 25px;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 600;
-            margin-top: 10px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(74, 30, 107, 0.5);
-            font-size: 0.9rem;
             border: 1px solid var(--galaxy-light);
         }
         
-        .download-btn:hover {
+        .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(74, 30, 107, 0.7);
             background: linear-gradient(to right, var(--galaxy-pink), var(--galaxy-purple));
         }
         
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        /* Songtekst sectie */
-        .lyrics-section {
-            background: rgba(10, 10, 42, 0.7);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid var(--galaxy-light);
-        }
-        
-        .lyrics-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-        }
-        
-        .lyrics-content {
-            white-space: pre-line;
-            line-height: 1.8;
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .character {
-            font-weight: bold;
-            color: var(--galaxy-light);
-            margin-top: 25px;
-            display: block;
-            font-size: 1.1rem;
-            text-shadow: 0 0 5px var(--galaxy-pink);
-        }
-        
-        .refrain {
-            margin: 20px 0;
-            padding-left: 20px;
-            border-left: 3px solid var(--galaxy-pink);
-            box-shadow: -5px 0 10px rgba(176, 48, 106, 0.3);
-        }
-        
-        /* Footer */
         footer {
             background: linear-gradient(to right, var(--galaxy-blue), var(--galaxy-purple));
             color: var(--text);
             text-align: center;
-            padding: 20px 0;
+            padding: 30px 0;
             margin-top: 50px;
             box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
         }
         
-        /* Responsive design */
         @media (max-width: 768px) {
             header h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 70px;
-                flex-direction: column;
-                background: linear-gradient(to bottom, var(--galaxy-blue), var(--galaxy-purple));
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 27px rgba(0,0,0,0.3);
-                z-index: 99;
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-item {
-                margin: 0;
-                width: 100%;
-            }
-            
-            .nav-link {
-                padding: 1rem;
-                width: 100%;
-                display: block;
-            }
-            
-            .hamburger {
-                display: flex;
-            }
-            
-            .hamburger.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-            
-            .hamburger.active span:nth-child(2) {
-                opacity: 0;
-            }
-            
-            .hamburger.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
-            }
-            
-            section {
-                margin-bottom: 40px;
-            }
-            
-            .music-section, .lyrics-section, .script-container {
-                padding: 20px;
-            }
-            
-            .embedded-script {
-                height: 400px;
-            }
-            
-            .btn-container {
-                flex-direction: column;
-                align-items: center;
+            .musicals-grid {
+                grid-template-columns: 1fr;
+                padding: 30px 0;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
-            <h1>Musical: Het Geheim van de Gloeiende Bloemen</h1>
-            <p>Documentatiecentrum - Script, muziek en songteksten</p>
+            <h1>Musical Documentatie</h1>
+            <p>Overzicht van alle musicals en bijbehorende documenten</p>
         </div>
     </header>
     
-    <!-- Navigatie -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">Musical Docs</div>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#script" class="nav-link">Script</a></li>
-                <li class="nav-item"><a href="#muziek" class="nav-link">Muziek</a></li>
-                <li class="nav-item"><a href="#songtekst" class="nav-link">Songtekst</a></li>
-            </ul>
-            <button class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-    
-    <!-- Fullscreen script -->
-    <div class="fullscreen-script" id="fullscreenScript">
-        <div class="fullscreen-header">
-            <h3>Musical Script - Het Geheim van de Gloeiende Bloemen</h3>
-            <button class="close-fullscreen" id="closeFullscreen">✕</button>
-        </div>
-        <iframe src="https://docs.google.com/document/d/11QDVMf6brOXmNw6eiF3rCPZrNmwVDiDTGNsNtWt0aB0/preview" class="fullscreen-iframe" frameborder="0"></iframe>
-    </div>
-    
-    <!-- Hoofdinhoud -->
     <main class="container">
-        <!-- Script sectie -->
-        <section id="script">
-            <h2>Script</h2>
-            <div class="script-container">
-                <p>Klik op de onderstaande knop om het script in fullscreen te bekijken:</p>
-                <div class="btn-container" style="margin-top: 20px;">
-                    <button class="download-btn" id="openFullscreen">Script in Fullscreen Openen</button>
-                </div>
-                <div class="embedded-script" style="margin-top: 20px;">
-                    <iframe src="https://docs.google.com/document/d/11QDVMf6brOXmNw6eiF3rCPZrNmwVDiDTGNsNtWt0aB0/preview" width="100%" height="100%" frameborder="0"></iframe>
-                </div>
+        <div class="musicals-grid">
+            <div class="musical-card">
+                <h2>Het Geheim van de Gloeiende Bloemen</h2>
+                <p>Een betoverende musical over feeën, bloemen en de kracht van vriendschap</p>
+                <a href="Het_Geheim_van_de_Gloeiende_Bloemen.html" class="btn">Bekijk Musical</a>
             </div>
-        </section>
-        
-        <!-- Muziek sectie -->
-        <section id="muziek">
-            <h2>Muziek</h2>
-            <div class="music-section">
-                <div class="song-container">
-                    <h3>Het Bloemenland</h3>
-                    <div class="music-player">
-                        <audio controls>
-                            <source src="Het Bloemenland.mp3" type="audio/mpeg">
-                            Je browser ondersteunt het audio element niet.
-                        </audio>
-                    </div>
-                    <div class="btn-container">
-                        <a href="Het Bloemenland.mp3" class="download-btn" download>Download Het Bloemenland</a>
-                    </div>
-                </div>
-                
-                <div class="song-container">
-                    <h3>Samen in het Licht (Faster)</h3>
-                    <div class="music-player">
-                        <audio controls>
-                            <source src="Samen in het Licht (Faster).mp3" type="audio/mpeg">
-                            Je browser ondersteunt het audio element niet.
-                        </audio>
-                    </div>
-                    <div class="btn-container">
-                        <a href="Samen in het Licht (Faster).mp3" class="download-btn" download>Download Samen in het Licht (Faster)</a>
-                    </div>
-                </div>
-                
-                <div class="song-container">
-                    <h3>Samen in het Licht (Instrumentaal)</h3>
-                    <div class="music-player">
-                        <audio controls>
-                            <source src="Samen in het Licht (instrumental).mp3" type="audio/mpeg">
-                            Je browser ondersteunt het audio element niet.
-                        </audio>
-                    </div>
-                    <div class="btn-container">
-                        <a href="Samen in het Licht (instrumental).mp3" class="download-btn" download>Download Samen in het Licht (Instrumentaal)</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Songtekst sectie -->
-        <section id="songtekst">
-            <h2>Songtekst</h2>
-            <div class="lyrics-section">
-                <div class="lyrics-content">
-<span class="character">(Couplet 1 - Floortje)</span>
-In het bos waar 's ochtends de zon weer verschijnt,
-Waar het dauwlicht danst en het zachtjes geurt,
-Zitten de feeën met vleugeltjes zwaar,
-Ze zijn hun glans en hun glimlach even kwijt dit jaar.
-
-<div class="refrain">
-<span class="character">(Refrein - Sanne)</span>
-Maar dan groeien de bloemen, roze en blauw,
-Ze fluisteren zachtjes: "We houden van jou."
-En de feeën beginnen weer vrolijk te zweven,
-Bloemen geven kleur aan het feeën leven!
-</div>
-
-<span class="character">(Couplet 2 - Floortje)</span>
-Een tulp tikt een traan van een fee'tje weg,
-Een madeliefje maakt haar hartje weer blij,
-En in een kring van zonnebloemen groot,
-Vinden de feeën opnieuw hun licht en hun hoop.
-
-<div class="refrain">
-<span class="character">(Refrein - Sanne - Keet - Naoual)</span>
-Want daar groeien de bloemen, geel als de zon,
-En elke fee voelt hoe haar lach weer begon.
-Ze dansen en zingen, licht als de wind,
-Met bloemen die troost geven, keer op keer, bemind.
-</div>
-
-<span class="character">(Bridge - Floortje)</span>
-En als de maan haar zilveren stralen spreidt,
-Worden de bloemen tot sterren gewijd.
-De feeën fluisteren dankbaar zacht:
-"Jullie hebben ons weer blij gemaakt."
-
-<div class="refrain">
-<span class="character">(Laatste Refrein - Iedereen)</span>
-Ja, dankzij de bloemen, rood, paars en groen,
-Kunnen de feeën weer lachen en dromen doen.
-Ze zweven en zingen, hand in hand,
-In het allermooiste bloemenland. (lang vasthouden)
-</div>
-                </div>
-            </div>
-        </section>
+            
+            <!-- Meer musicals kunnen hier later worden toegevoegd -->
+        </div>
     </main>
     
-    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2023 Musical "Het Geheim van de Gloeiende Bloemen" - Alle rechten voorbehouden</p>
+            <p>&copy; 2023 Musical Documentatie - Alle rechten voorbehouden</p>
         </div>
     </footer>
-
-    <script>
-        // Hamburger menu functionaliteit
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-            
-            // Sluit menu wanneer er op een link wordt geklikt
-            document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            }));
-
-            // Fullscreen script functionaliteit
-            const fullscreenScript = document.getElementById('fullscreenScript');
-            const openFullscreenBtn = document.getElementById('openFullscreen');
-            const closeFullscreenBtn = document.getElementById('closeFullscreen');
-
-            openFullscreenBtn.addEventListener('click', () => {
-                fullscreenScript.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-
-            closeFullscreenBtn.addEventListener('click', () => {
-                fullscreenScript.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-
-            // Sluit fullscreen met Escape toets
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && fullscreenScript.classList.contains('active')) {
-                    fullscreenScript.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        });
-    </script>
 </body>
 </html>
