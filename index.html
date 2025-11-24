@@ -1,1 +1,388 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musical - Het Bloemenland</title>
+    <style>
+        /* Algemene stijlen */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(to right, #2E8B57, #3CB371);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><path d="M50,10 C60,20 70,30 80,40 C90,50 95,60 90,70 C85,80 70,85 50,90 C30,85 15,80 10,70 C5,60 10,50 20,40 C30,30 40,20 50,10 Z" fill="white"/></svg>');
+            background-size: 150px;
+            opacity: 0.1;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            opacity: 0.9;
+        }
+        
+        /* Navigatie */
+        nav {
+            background-color: #2E8B57;
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 0;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 18px 25px;
+            display: block;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255,255,255,0.15);
+            border-bottom: 3px solid #FFD700;
+        }
+        
+        /* Secties */
+        section {
+            padding: 60px 0;
+        }
+        
+        section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2E8B57;
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        section h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #2E8B57, #3CB371);
+        }
+        
+        /* Muziek sectie */
+        .music-player {
+            background-color: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+            margin-bottom: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .music-player:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .music-player h3 {
+            color: #2E8B57;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .music-player audio {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px 0;
+            border-radius: 30px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(to right, #2E8B57, #3CB371);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(46, 139, 87, 0.3);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(46, 139, 87, 0.4);
+        }
+        
+        /* Script sectie */
+        .script-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .script-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .script-container h3 {
+            color: #2E8B57;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .embedded-script {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        /* Songtekst sectie */
+        .lyrics {
+            background-color: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .lyrics:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .lyrics-content {
+            white-space: pre-line;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .character {
+            font-weight: bold;
+            color: #2E8B57;
+            margin-top: 25px;
+            display: block;
+            font-size: 1.1rem;
+        }
+        
+        .refrain {
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 3px solid #3CB371;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2E7D32;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            nav a {
+                padding: 15px;
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+            
+            .music-player, .script-container, .lyrics {
+                padding: 25px;
+            }
+            
+            .embedded-script {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Musical: Het Bloemenland</h1>
+            <p>Documentatiecentrum - Script, muziek en songteksten</p>
+        </div>
+    </header>
+    
+    <!-- Navigatie -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#muziek">Muziek</a></li>
+                <li><a href="#script">Script</a></li>
+                <li><a href="#songtekst">Songtekst</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hoofdinhoud -->
+    <main class="container">
+        <!-- Muziek sectie -->
+        <section id="muziek">
+            <h2>Muziek</h2>
+            <div class="music-player">
+                <h3>Beluister "Het Bloemenland"</h3>
+                <p>Het hoofdnummer uit de musical</p>
+                <audio controls>
+                    <source src="Het Bloemenland.mp3" type="audio/mpeg">
+                    Je browser ondersteunt het audio element niet.
+                </audio>
+                <br>
+                <a href="Het Bloemenland.mp3" class="download-btn" download>Download het lied</a>
+            </div>
+        </section>
+        
+        <!-- Script sectie -->
+        <section id="script">
+            <h2>Script</h2>
+            <div class="script-container">
+                <h3>Volledige musicalscript</h3>
+                <div class="embedded-script">
+                    <iframe src="https://docs.google.com/document/d/11QDVMf6brOXmNw6eiF3rCPZrNmwVDiDTGNsNtWt0aB0/preview" width="100%" height="100%" frameborder="0"></iframe>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Songtekst sectie -->
+        <section id="songtekst">
+            <h2>Songtekst</h2>
+            <div class="lyrics">
+                <div class="lyrics-content">
+<span class="character">(Couplet 1 - Floortje)</span>
+In het bos waar 's ochtends de zon weer verschijnt,
+Waar het dauwlicht danst en het zachtjes geurt,
+Zitten de feeën met vleugeltjes zwaar,
+Ze zijn hun glans en hun glimlach even kwijt dit jaar.
 
+<div class="refrain">
+<span class="character">(Refrein - Sanne)</span>
+Maar dan groeien de bloemen, roze en blauw,
+Ze fluisteren zachtjes: "We houden van jou."
+En de feeën beginnen weer vrolijk te zweven,
+Bloemen geven kleur aan het feeën leven!
+</div>
+
+<span class="character">(Couplet 2 - Floortje)</span>
+Een tulp tikt een traan van een fee'tje weg,
+Een madeliefje maakt haar hartje weer blij,
+En in een kring van zonnebloemen groot,
+Vinden de feeën opnieuw hun licht en hun hoop.
+
+<div class="refrain">
+<span class="character">(Refrein - Sanne - Keet - Naoual)</span>
+Want daar groeien de bloemen, geel als de zon,
+En elke fee voelt hoe haar lach weer begon.
+Ze dansen en zingen, licht als de wind,
+Met bloemen die troost geven, keer op keer, bemind.
+</div>
+
+<span class="character">(Bridge - Floortje)</span>
+En als de maan haar zilveren stralen spreidt,
+Worden de bloemen tot sterren gewijd.
+De feeën fluisteren dankbaar zacht:
+"Jullie hebben ons weer blij gemaakt."
+
+<div class="refrain">
+<span class="character">(Laatste Refrein - Iedereen)</span>
+Ja, dankzij de bloemen, rood, paars en groen,
+Kunnen de feeën weer lachen en dromen doen.
+Ze zweven en zingen, hand in hand,
+In het allermooiste bloemenland. (lang vasthouden)
+</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Musical "Het Bloemenland" - Alle rechten voorbehouden</p>
+        </div>
+    </footer>
+</body>
+</html>
