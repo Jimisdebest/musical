@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Musical - Het Bloemenland</title>
+    <title>Musical - Het Geheim van de Gloeiende Bloemen</title>
     <style>
         /* Algemene stijlen */
         * {
@@ -30,7 +30,7 @@
         header {
             background: linear-gradient(to right, #2E8B57, #3CB371);
             color: white;
-            padding: 40px 0;
+            padding: 30px 0;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             position: relative;
@@ -50,7 +50,7 @@
         }
         
         header h1 {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
             position: relative;
@@ -86,7 +86,7 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
-            padding: 18px 25px;
+            padding: 15px 25px;
             display: block;
             transition: all 0.3s ease;
             border-bottom: 3px solid transparent;
@@ -97,57 +97,87 @@
             border-bottom: 3px solid #FFD700;
         }
         
-        /* Secties */
-        section {
-            padding: 60px 0;
+        /* Hoofdinhoud */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 160px);
         }
         
-        section h2 {
+        /* Script sectie - Fullscreen */
+        .script-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+        }
+        
+        .script-header {
+            background-color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            z-index: 10;
+        }
+        
+        .script-header h2 {
             text-align: center;
-            margin-bottom: 40px;
             color: #2E8B57;
-            font-size: 2.2rem;
-            position: relative;
-            padding-bottom: 15px;
+            font-size: 1.8rem;
         }
         
-        section h2::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(to right, #2E8B57, #3CB371);
+        .script-container {
+            flex: 1;
+            background-color: white;
+            margin: 0;
+        }
+        
+        .embedded-script {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         
         /* Muziek sectie */
-        .music-player {
+        .music-section {
             background-color: white;
             border-radius: 12px;
-            padding: 40px;
+            padding: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            text-align: center;
-            margin-bottom: 40px;
+            margin: 20px 0;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .music-player:hover {
+        .music-section:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.12);
         }
         
-        .music-player h3 {
+        .music-section h3 {
             color: #2E8B57;
             margin-bottom: 20px;
             font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .song-container {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f9f9f9;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .song-container h4 {
+            color: #2E8B57;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
         }
         
         .music-player audio {
             width: 100%;
             max-width: 500px;
-            margin: 20px 0;
+            margin: 15px 0;
             border-radius: 30px;
         }
         
@@ -155,13 +185,14 @@
             display: inline-block;
             background: linear-gradient(to right, #2E8B57, #3CB371);
             color: white;
-            padding: 12px 25px;
+            padding: 10px 20px;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 600;
-            margin-top: 15px;
+            margin-top: 10px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(46, 139, 87, 0.3);
+            font-size: 0.9rem;
         }
         
         .download-btn:hover {
@@ -169,47 +200,24 @@
             box-shadow: 0 6px 20px rgba(46, 139, 87, 0.4);
         }
         
-        /* Script sectie */
-        .script-container {
-            background-color: white;
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            margin-bottom: 40px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .script-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-        }
-        
-        .script-container h3 {
-            color: #2E8B57;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            text-align: center;
-        }
-        
-        .embedded-script {
-            width: 100%;
-            height: 600px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            overflow: hidden;
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
         
         /* Songtekst sectie */
-        .lyrics {
+        .lyrics-section {
             background-color: white;
             border-radius: 12px;
-            padding: 40px;
+            padding: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            margin-bottom: 40px;
+            margin: 20px 0;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .lyrics:hover {
+        .lyrics-section:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.12);
         }
@@ -241,14 +249,13 @@
             background-color: #2E7D32;
             color: white;
             text-align: center;
-            padding: 30px 0;
-            margin-top: 50px;
+            padding: 20px 0;
         }
         
         /* Responsive design */
         @media (max-width: 768px) {
             header h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             
             nav ul {
@@ -262,20 +269,58 @@
             }
             
             nav a {
-                padding: 15px;
+                padding: 12px;
             }
             
-            section {
-                padding: 40px 0;
+            .main-content {
+                height: auto;
             }
             
-            .music-player, .script-container, .lyrics {
-                padding: 25px;
+            .music-section, .lyrics-section {
+                padding: 20px;
             }
             
-            .embedded-script {
-                height: 400px;
+            .btn-container {
+                flex-direction: column;
+                align-items: center;
             }
+        }
+        
+        /* Tab knoppen */
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .tab-btn {
+            background: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 0 10px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(to right, #2E8B57, #3CB371);
+            color: white;
+        }
+        
+        .tab-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
         }
     </style>
 </head>
@@ -283,7 +328,7 @@
     <!-- Header -->
     <header>
         <div class="container">
-            <h1>Musical: Het Bloemenland</h1>
+            <h1>Musical: Het Geheim van de Gloeiende Bloemen</h1>
             <p>Documentatiecentrum - Script, muziek en songteksten</p>
         </div>
     </header>
@@ -292,8 +337,8 @@
     <nav>
         <div class="container">
             <ul>
-                <li><a href="#muziek">Muziek</a></li>
                 <li><a href="#script">Script</a></li>
+                <li><a href="#muziek">Muziek</a></li>
                 <li><a href="#songtekst">Songtekst</a></li>
             </ul>
         </div>
@@ -301,36 +346,75 @@
     
     <!-- Hoofdinhoud -->
     <main class="container">
-        <!-- Muziek sectie -->
-        <section id="muziek">
-            <h2>Muziek</h2>
-            <div class="music-player">
-                <h3>Beluister "Het Bloemenland"</h3>
-                <p>Het hoofdnummer uit de musical</p>
-                <audio controls>
-                    <source src="Het Bloemenland.mp3" type="audio/mpeg">
-                    Je browser ondersteunt het audio element niet.
-                </audio>
-                <br>
-                <a href="Het Bloemenland.mp3" class="download-btn" download>Download het lied</a>
+        <!-- Tab knoppen voor mobiel -->
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="script">Script</button>
+            <button class="tab-btn" data-tab="muziek">Muziek</button>
+            <button class="tab-btn" data-tab="songtekst">Songtekst</button>
+        </div>
+        
+        <!-- Script sectie - Fullscreen -->
+        <section id="script" class="tab-content active">
+            <div class="main-content">
+                <div class="script-header">
+                    <h2>Volledig Musical Script</h2>
+                </div>
+                <div class="script-container">
+                    <iframe src="https://docs.google.com/document/d/11QDVMf6brOXmNw6eiF3rCPZrNmwVDiDTGNsNtWt0aB0/preview" class="embedded-script" frameborder="0"></iframe>
+                </div>
             </div>
         </section>
         
-        <!-- Script sectie -->
-        <section id="script">
-            <h2>Script</h2>
-            <div class="script-container">
-                <h3>Volledige musicalscript</h3>
-                <div class="embedded-script">
-                    <iframe src="https://docs.google.com/document/d/11QDVMf6brOXmNw6eiF3rCPZrNmwVDiDTGNsNtWt0aB0/preview" width="100%" height="100%" frameborder="0"></iframe>
+        <!-- Muziek sectie -->
+        <section id="muziek" class="tab-content">
+            <div class="music-section">
+                <h3>Muziek uit de Musical</h3>
+                
+                <div class="song-container">
+                    <h4>Het Bloemenland</h4>
+                    <div class="music-player">
+                        <audio controls>
+                            <source src="Het Bloemenland.mp3" type="audio/mpeg">
+                            Je browser ondersteunt het audio element niet.
+                        </audio>
+                    </div>
+                    <div class="btn-container">
+                        <a href="Het Bloemenland.mp3" class="download-btn" download>Download Het Bloemenland</a>
+                    </div>
+                </div>
+                
+                <div class="song-container">
+                    <h4>Samen in het Licht (Faster)</h4>
+                    <div class="music-player">
+                        <audio controls>
+                            <source src="Samen in het Licht (Faster).mp3" type="audio/mpeg">
+                            Je browser ondersteunt het audio element niet.
+                        </audio>
+                    </div>
+                    <div class="btn-container">
+                        <a href="Samen in het Licht (Faster).mp3" class="download-btn" download>Download Samen in het Licht (Faster)</a>
+                    </div>
+                </div>
+                
+                <div class="song-container">
+                    <h4>Samen in het Licht (Instrumentaal)</h4>
+                    <div class="music-player">
+                        <audio controls>
+                            <source src="Samen in het Licht (instrumental).mp3" type="audio/mpeg">
+                            Je browser ondersteunt het audio element niet.
+                        </audio>
+                    </div>
+                    <div class="btn-container">
+                        <a href="Samen in het Licht (instrumental).mp3" class="download-btn" download>Download Samen in het Licht (Instrumentaal)</a>
+                    </div>
                 </div>
             </div>
         </section>
         
         <!-- Songtekst sectie -->
-        <section id="songtekst">
-            <h2>Songtekst</h2>
-            <div class="lyrics">
+        <section id="songtekst" class="tab-content">
+            <div class="lyrics-section">
+                <h3>Songtekst: Het Bloemenland</h3>
                 <div class="lyrics-content">
 <span class="character">(Couplet 1 - Floortje)</span>
 In het bos waar 's ochtends de zon weer verschijnt,
@@ -381,8 +465,46 @@ In het allermooiste bloemenland. (lang vasthouden)
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2023 Musical "Het Bloemenland" - Alle rechten voorbehouden</p>
+            <p>&copy; 2023 Musical "Het Geheim van de Gloeiende Bloemen" - Alle rechten voorbehouden</p>
         </div>
     </footer>
+
+    <script>
+        // Tab functionaliteit
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Verwijder active class van alle knoppen en content
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Voeg active class toe aan geklikte knop en bijbehorende content
+                    btn.classList.add('active');
+                    const tabId = btn.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Navigatie koppeling met tabs
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    
+                    // Verwijder active class van alle knoppen en content
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Activeer de juiste tab
+                    document.querySelector(`.tab-btn[data-tab="${targetId}"]`).classList.add('active');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
