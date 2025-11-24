@@ -14,12 +14,13 @@
         }
         
         :root {
-            --primary: #2E8B57;
-            --primary-light: #3CB371;
-            --secondary: #FFD700;
-            --text: #333;
-            --background: #f5f7fa;
-            --white: #ffffff;
+            --galaxy-dark: #0a0a2a;
+            --galaxy-purple: #4a1e6b;
+            --galaxy-blue: #2a2a72;
+            --galaxy-pink: #b0306a;
+            --galaxy-light: #8b7db8;
+            --galaxy-star: #ffffff;
+            --text: #e6e6ff;
         }
         
         html {
@@ -27,11 +28,44 @@
         }
         
         body {
-            background: linear-gradient(135deg, var(--background) 0%, #e4edf5 100%);
+            background: linear-gradient(135deg, var(--galaxy-dark) 0%, var(--galaxy-blue) 50%, var(--galaxy-purple) 100%);
             color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Galaxy sterren effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, var(--galaxy-star), transparent),
+                radial-gradient(2px 2px at 40px 70px, var(--galaxy-star), transparent),
+                radial-gradient(1px 1px at 90px 40px, var(--galaxy-star), transparent),
+                radial-gradient(1px 1px at 130px 80px, var(--galaxy-star), transparent),
+                radial-gradient(2px 2px at 160px 30px, var(--galaxy-star), transparent),
+                radial-gradient(1px 1px at 210px 60px, var(--galaxy-star), transparent),
+                radial-gradient(2px 2px at 250px 90px, var(--galaxy-star), transparent),
+                radial-gradient(1px 1px at 290px 40px, var(--galaxy-star), transparent),
+                radial-gradient(2px 2px at 320px 70px, var(--galaxy-star), transparent),
+                radial-gradient(1px 1px at 360px 20px, var(--galaxy-star), transparent);
+            background-repeat: repeat;
+            background-size: 400px 400px;
+            opacity: 0.4;
+            z-index: -1;
+            animation: twinkle 20s infinite linear;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.3; }
         }
         
         .container {
@@ -42,11 +76,11 @@
         
         /* Header */
         header {
-            background: linear-gradient(to right, var(--primary), var(--primary-light));
-            color: var(--white);
+            background: linear-gradient(to right, var(--galaxy-purple), var(--galaxy-pink));
+            color: var(--text);
             padding: 25px 0;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             position: relative;
             overflow: hidden;
         }
@@ -66,7 +100,7 @@
         header h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             position: relative;
         }
         
@@ -80,9 +114,9 @@
         
         /* Navigatie */
         nav {
-            background-color: var(--primary);
+            background: linear-gradient(to right, var(--galaxy-blue), var(--galaxy-purple));
             padding: 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -96,7 +130,7 @@
         }
         
         .logo {
-            color: var(--white);
+            color: var(--text);
             font-weight: bold;
             font-size: 1.2rem;
         }
@@ -111,7 +145,7 @@
         }
         
         .nav-link {
-            color: var(--white);
+            color: var(--text);
             text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
@@ -123,7 +157,7 @@
         
         .nav-link:hover {
             background-color: rgba(255,255,255,0.15);
-            border-bottom: 3px solid var(--secondary);
+            border-bottom: 3px solid var(--galaxy-pink);
         }
         
         .hamburger {
@@ -141,7 +175,7 @@
             display: block;
             height: 3px;
             width: 100%;
-            background-color: var(--white);
+            background-color: var(--text);
             border-radius: 3px;
             transition: all 0.3s ease;
         }
@@ -159,10 +193,11 @@
         section h2 {
             text-align: center;
             margin-bottom: 40px;
-            color: var(--primary);
+            color: var(--text);
             font-size: 2.2rem;
             position: relative;
             padding-bottom: 15px;
+            text-shadow: 0 0 10px rgba(181, 101, 224, 0.7);
         }
         
         section h2::after {
@@ -173,58 +208,113 @@
             transform: translateX(-50%);
             width: 80px;
             height: 3px;
-            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            background: linear-gradient(to right, var(--galaxy-pink), var(--galaxy-light));
+            box-shadow: 0 0 10px var(--galaxy-pink);
         }
         
         /* Script sectie */
         .script-container {
-            background-color: var(--white);
+            background: rgba(10, 10, 42, 0.7);
             border-radius: 12px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--galaxy-light);
         }
         
         .script-container:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
         }
         
         .embedded-script {
             width: 100%;
             height: 600px;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--galaxy-light);
             border-radius: 8px;
             overflow: hidden;
         }
         
+        /* Fullscreen script */
+        .fullscreen-script {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--galaxy-dark);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .fullscreen-script.active {
+            display: block;
+        }
+        
+        .fullscreen-header {
+            background: linear-gradient(to right, var(--galaxy-purple), var(--galaxy-pink));
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .fullscreen-header h3 {
+            color: var(--text);
+            margin: 0;
+        }
+        
+        .close-fullscreen {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .close-fullscreen:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .fullscreen-iframe {
+            width: 100%;
+            height: calc(100% - 60px);
+            border: none;
+        }
+        
         /* Muziek sectie */
         .music-section {
-            background-color: var(--white);
+            background: rgba(10, 10, 42, 0.7);
             border-radius: 12px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--galaxy-light);
         }
         
         .music-section:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
         }
         
         .song-container {
             margin-bottom: 30px;
             padding: 20px;
             border-radius: 10px;
-            background: #f9f9f9;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            background: rgba(42, 42, 114, 0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 1px solid var(--galaxy-light);
         }
         
         .song-container h3 {
-            color: var(--primary);
+            color: var(--text);
             margin-bottom: 15px;
             font-size: 1.3rem;
             text-align: center;
+            text-shadow: 0 0 5px var(--galaxy-pink);
         }
         
         .music-player audio {
@@ -232,25 +322,28 @@
             max-width: 500px;
             margin: 15px 0;
             border-radius: 30px;
+            filter: drop-shadow(0 0 5px var(--galaxy-pink));
         }
         
         .download-btn {
             display: inline-block;
-            background: linear-gradient(to right, var(--primary), var(--primary-light));
-            color: var(--white);
+            background: linear-gradient(to right, var(--galaxy-purple), var(--galaxy-pink));
+            color: var(--text);
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 600;
             margin-top: 10px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(46, 139, 87, 0.3);
+            box-shadow: 0 4px 15px rgba(74, 30, 107, 0.5);
             font-size: 0.9rem;
+            border: 1px solid var(--galaxy-light);
         }
         
         .download-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(46, 139, 87, 0.4);
+            box-shadow: 0 6px 20px rgba(74, 30, 107, 0.7);
+            background: linear-gradient(to right, var(--galaxy-pink), var(--galaxy-purple));
         }
         
         .btn-container {
@@ -262,16 +355,17 @@
         
         /* Songtekst sectie */
         .lyrics-section {
-            background-color: var(--white);
+            background: rgba(10, 10, 42, 0.7);
             border-radius: 12px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--galaxy-light);
         }
         
         .lyrics-section:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
         }
         
         .lyrics-content {
@@ -284,25 +378,28 @@
         
         .character {
             font-weight: bold;
-            color: var(--primary);
+            color: var(--galaxy-light);
             margin-top: 25px;
             display: block;
             font-size: 1.1rem;
+            text-shadow: 0 0 5px var(--galaxy-pink);
         }
         
         .refrain {
             margin: 20px 0;
             padding-left: 20px;
-            border-left: 3px solid var(--primary-light);
+            border-left: 3px solid var(--galaxy-pink);
+            box-shadow: -5px 0 10px rgba(176, 48, 106, 0.3);
         }
         
         /* Footer */
         footer {
-            background-color: #2E7D32;
-            color: var(--white);
+            background: linear-gradient(to right, var(--galaxy-blue), var(--galaxy-purple));
+            color: var(--text);
             text-align: center;
             padding: 20px 0;
             margin-top: 50px;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
         }
         
         /* Responsive design */
@@ -316,11 +413,11 @@
                 left: -100%;
                 top: 70px;
                 flex-direction: column;
-                background-color: var(--primary);
+                background: linear-gradient(to bottom, var(--galaxy-blue), var(--galaxy-purple));
                 width: 100%;
                 text-align: center;
                 transition: 0.3s;
-                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                box-shadow: 0 10px 27px rgba(0,0,0,0.3);
                 z-index: 99;
             }
             
@@ -400,13 +497,26 @@
         </div>
     </nav>
     
+    <!-- Fullscreen script -->
+    <div class="fullscreen-script" id="fullscreenScript">
+        <div class="fullscreen-header">
+            <h3>Musical Script - Het Geheim van de Gloeiende Bloemen</h3>
+            <button class="close-fullscreen" id="closeFullscreen">✕</button>
+        </div>
+        <iframe src="https://docs.google.com/document/d/11QDVMf6brOXmNw6eiF3rCPZrNmwVDiDTGNsNtWt0aB0/preview" class="fullscreen-iframe" frameborder="0"></iframe>
+    </div>
+    
     <!-- Hoofdinhoud -->
     <main class="container">
         <!-- Script sectie -->
         <section id="script">
             <h2>Script</h2>
             <div class="script-container">
-                <div class="embedded-script">
+                <p>Klik op de onderstaande knop om het script in fullscreen te bekijken:</p>
+                <div class="btn-container" style="margin-top: 20px;">
+                    <button class="download-btn" id="openFullscreen">Script in Fullscreen Openen</button>
+                </div>
+                <div class="embedded-script" style="margin-top: 20px;">
                     <iframe src="https://docs.google.com/document/d/11QDVMf6brOXmNw6eiF3rCPZrNmwVDiDTGNsNtWt0aB0/preview" width="100%" height="100%" frameborder="0"></iframe>
                 </div>
             </div>
@@ -531,6 +641,29 @@ In het allermooiste bloemenland. (lang vasthouden)
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
             }));
+
+            // Fullscreen script functionaliteit
+            const fullscreenScript = document.getElementById('fullscreenScript');
+            const openFullscreenBtn = document.getElementById('openFullscreen');
+            const closeFullscreenBtn = document.getElementById('closeFullscreen');
+
+            openFullscreenBtn.addEventListener('click', () => {
+                fullscreenScript.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            closeFullscreenBtn.addEventListener('click', () => {
+                fullscreenScript.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Sluit fullscreen met Escape toets
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && fullscreenScript.classList.contains('active')) {
+                    fullscreenScript.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
         });
     </script>
 </body>
