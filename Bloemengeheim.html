@@ -578,6 +578,62 @@
             transition: all 0.3s ease;
         }
         
+        /* Dansvideo modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .video-modal.active {
+            display: flex;
+        }
+        
+        .video-modal-content {
+            background: var(--galaxy-dark);
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            border: 2px solid var(--galaxy-pink);
+        }
+        
+        .close-video {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: var(--galaxy-pink);
+            color: var(--text);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 2001;
+        }
+        
+        .video-container {
+            width: 800px;
+            height: 450px;
+            max-width: 90vw;
+            max-height: 50vh;
+        }
+        
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
         /* Footer */
         footer {
             background: linear-gradient(to right, var(--galaxy-blue), var(--galaxy-purple));
@@ -658,6 +714,11 @@
             .song-selection {
                 grid-template-columns: 1fr;
             }
+            
+            .video-container {
+                width: 95vw;
+                height: calc(95vw * 9/16);
+            }
         }
     </style>
 </head>
@@ -698,6 +759,19 @@
         <iframe src="https://docs.google.com/document/d/11QDVMf6brOXmNw6eiF3rCPZrNmwVDiDTGNsNtWt0aB0/preview" class="fullscreen-iframe" frameborder="0"></iframe>
     </div>
     
+    <!-- Dansvideo Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-content">
+            <button class="close-video" id="closeVideo">✕</button>
+            <div class="video-container">
+                <video controls id="danceVideo">
+                    <source src="" type="video/mp4">
+                    Je browser ondersteunt deze video niet.
+                </video>
+            </div>
+        </div>
+    </div>
+    
     <!-- Hoofdinhoud -->
     <main class="container">
         <!-- Script sectie -->
@@ -728,7 +802,7 @@
                     </div>
                     <div class="btn-container">
                         <a href="Het Bloemenland.mp3" class="download-btn" download>Download Het Bloemenland</a>
-                        <a href="#" class="dance-btn">Bekijk de Dansvideo</a>
+                        <a href="#" class="dance-btn" data-video="HetBloemenlandDansvideo.mp4">Bekijk de Dansvideo</a>
                     </div>
                 </div>
                 
@@ -742,7 +816,7 @@
                     </div>
                     <div class="btn-container">
                         <a href="Samen in het Licht (Faster).mp3" class="download-btn" download>Download Samen in het Licht (Faster)</a>
-                        <a href="#" class="dance-btn">Bekijk de Dansvideo</a>
+                        <a href="#" class="dance-btn" data-video="SamenInHetLichtDansvideo.mp4">Bekijk de Dansvideo</a>
                     </div>
                 </div>
                 
@@ -756,6 +830,7 @@
                     </div>
                     <div class="btn-container">
                         <a href="Samen in het Licht (instrumental).mp3" class="download-btn" download>Download Samen in het Licht (Instrumentaal)</a>
+                        <a href="#" class="dance-btn" data-video="SamenInHetLichtInstrumentaalDansvideo.mp4">Bekijk de Dansvideo</a>
                     </div>
                 </div>
                 
@@ -769,7 +844,7 @@
                     </div>
                     <div class="btn-container">
                         <a href="Het Grote Avontuur.mp3" class="download-btn" download>Download Het Grote Avontuur</a>
-                        <a href="#" class="dance-btn">Bekijk de Dansvideo</a>
+                        <a href="#" class="dance-btn" data-video="HetGroteAvontuurDansvideo.mp4">Bekijk de Dansvideo</a>
                     </div>
                 </div>
             </div>
@@ -1133,12 +1208,57 @@ En samen zijn we… hoog!
                 // stopPracticeBtn.click();
             });
             
-            // Dansvideo knop functionaliteit (plaatshouder)
+            // Dansvideo functionaliteit
+            const videoModal = document.getElementById('videoModal');
+            const danceVideo = document.getElementById('danceVideo');
+            const closeVideoBtn = document.getElementById('closeVideo');
+            
+            // Luister naar dansvideo knoppen
             document.querySelectorAll('.dance-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    alert("De dansvideo's worden binnenkort toegevoegd aan de website!");
+                    const videoSrc = this.getAttribute('data-video');
+                    
+                    if (videoSrc) {
+                        // Zet video source
+                        danceVideo.src = videoSrc;
+                        // Toon modal
+                        videoModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                        // Start video
+                        danceVideo.play();
+                    } else {
+                        alert("Dansvideo nog niet beschikbaar!");
+                    }
                 });
+            });
+            
+            // Sluit video modal
+            closeVideoBtn.addEventListener('click', function() {
+                videoModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                danceVideo.pause();
+                danceVideo.currentTime = 0;
+            });
+            
+            // Sluit video modal met Escape toets
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                    videoModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    danceVideo.pause();
+                    danceVideo.currentTime = 0;
+                }
+            });
+            
+            // Sluit video modal wanneer er buiten wordt geklikt
+            videoModal.addEventListener('click', function(e) {
+                if (e.target === videoModal) {
+                    videoModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    danceVideo.pause();
+                    danceVideo.currentTime = 0;
+                }
             });
         });
     </script>
