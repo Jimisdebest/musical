@@ -359,10 +359,32 @@
             border: 1px solid var(--galaxy-light);
         }
         
-        .download-btn:hover {
+        .dance-btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--galaxy-blue), var(--galaxy-light));
+            color: var(--text);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(42, 42, 114, 0.5);
+            font-size: 0.9rem;
+            border: 1px solid var(--galaxy-light);
+        }
+        
+        .download-btn:hover, .dance-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(74, 30, 107, 0.7);
+        }
+        
+        .download-btn:hover {
             background: linear-gradient(to right, var(--galaxy-pink), var(--galaxy-purple));
+        }
+        
+        .dance-btn:hover {
+            background: linear-gradient(to right, var(--galaxy-light), var(--galaxy-blue));
         }
         
         .btn-container {
@@ -426,6 +448,134 @@
             background: rgba(176, 48, 106, 0.1);
             border-radius: 8px;
             border-left: 4px solid var(--galaxy-light);
+        }
+        
+        /* NIEUWE CSS voor oefenmodus */
+        .practice-mode {
+            background: rgba(74, 30, 107, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px solid var(--galaxy-light);
+        }
+        
+        .practice-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .practice-header h3 {
+            color: var(--galaxy-light);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px var(--galaxy-pink);
+        }
+        
+        .song-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .song-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: rgba(42, 42, 114, 0.5);
+            border-radius: 8px;
+            border: 1px solid var(--galaxy-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .song-option:hover {
+            background: rgba(74, 30, 107, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .song-option input {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+        
+        .song-option label {
+            color: var(--text);
+            font-weight: 600;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .practice-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .practice-btn {
+            background: linear-gradient(to right, var(--galaxy-purple), var(--galaxy-pink));
+            color: var(--text);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(74, 30, 107, 0.5);
+        }
+        
+        .practice-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(74, 30, 107, 0.7);
+        }
+        
+        .practice-btn:disabled {
+            background: rgba(139, 125, 184, 0.3);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .lyrics-practice {
+            display: none;
+            background: rgba(10, 10, 42, 0.8);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+            border: 2px solid var(--galaxy-pink);
+        }
+        
+        .lyrics-practice.active {
+            display: block;
+        }
+        
+        .practice-player {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .practice-player audio {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 30px;
+            filter: drop-shadow(0 0 8px var(--galaxy-pink));
+        }
+        
+        .current-song-title {
+            text-align: center;
+            color: var(--galaxy-light);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 8px var(--galaxy-pink);
+        }
+        
+        .highlighted-line {
+            background: rgba(176, 48, 106, 0.3);
+            padding: 5px 10px;
+            border-radius: 5px;
+            border-left: 3px solid var(--galaxy-pink);
+            transition: all 0.3s ease;
         }
         
         /* Footer */
@@ -492,7 +642,7 @@
                 margin-bottom: 40px;
             }
             
-            .music-section, .lyrics-section, .script-container {
+            .music-section, .lyrics-section, .script-container, .practice-mode {
                 padding: 20px;
             }
             
@@ -500,9 +650,13 @@
                 height: 400px;
             }
             
-            .btn-container {
+            .btn-container, .practice-controls {
                 flex-direction: column;
                 align-items: center;
+            }
+            
+            .song-selection {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -512,6 +666,7 @@
     <header>
         <div class="container">
             <h1>Musical: Het Geheim van de Gloeiende Bloemen</h1>
+            <p>Documentatiecentrum - Script, muziek en songteksten</p>
         </div>
     </header>
     
@@ -537,7 +692,7 @@
     <!-- Fullscreen script -->
     <div class="fullscreen-script" id="fullscreenScript">
         <div class="fullscreen-header">
-            <h3>Je bekijkt het script van ´Het Geheim van de Gloeiende Bloemen´</h3>
+            <h3>Musical Script - Het Geheim van de Gloeiende Bloemen</h3>
             <button class="close-fullscreen" id="closeFullscreen">✕</button>
         </div>
         <iframe src="https://docs.google.com/document/d/11QDVMf6brOXmNw6eiF3rCPZrNmwVDiDTGNsNtWt0aB0/preview" class="fullscreen-iframe" frameborder="0"></iframe>
@@ -554,7 +709,7 @@
                     <button class="download-btn" id="openFullscreen">Script in Fullscreen Openen</button>
                 </div>
                 <div class="embedded-script" style="margin-top: 20px;">
-                    <iframe src="https://docs.google.com/document/d/11QDVMf6brOXmNw6eiF3rCPZrNmwVDiDTGNsNtWt0aB0/edit?usp=sharing" width="100%" height="100%" frameborder="0"></iframe>
+                    <iframe src="https://docs.google.com/document/d/11QDVMf6brOXmNw6eiF3rCPZrNmwVDiDTGNsNtWt0aB0/preview" width="100%" height="100%" frameborder="0"></iframe>
                 </div>
             </div>
         </section>
@@ -573,6 +728,7 @@
                     </div>
                     <div class="btn-container">
                         <a href="Het Bloemenland.mp3" class="download-btn" download>Download Het Bloemenland</a>
+                        <a href="#" class="dance-btn">Bekijk de Dansvideo</a>
                     </div>
                 </div>
                 
@@ -586,6 +742,7 @@
                     </div>
                     <div class="btn-container">
                         <a href="Samen in het Licht (Faster).mp3" class="download-btn" download>Download Samen in het Licht (Faster)</a>
+                        <a href="#" class="dance-btn">Bekijk de Dansvideo</a>
                     </div>
                 </div>
                 
@@ -612,6 +769,7 @@
                     </div>
                     <div class="btn-container">
                         <a href="Het Grote Avontuur.mp3" class="download-btn" download>Download Het Grote Avontuur</a>
+                        <a href="#" class="dance-btn">Bekijk de Dansvideo</a>
                     </div>
                 </div>
             </div>
@@ -619,12 +777,53 @@
         
         <!-- Songteksten sectie -->
         <section id="songteksten">
-            <h2>Songteksten</h2>
+            <h2>Songteksten Oefenen</h2>
             
-            <!-- Lied 1: Het Bloemenland -->
-            <div class="lyrics-section">
-                <h3>Het Bloemenland</h3>
-                <div class="lyrics-content">
+            <!-- Oefenmodus -->
+            <div class="practice-mode">
+                <div class="practice-header">
+                    <h3>🎵 Kies een lied om te oefenen 🎵</h3>
+                    <p>Selecteer een lied en begin met oefenen. De muziek start automatisch!</p>
+                </div>
+                
+                <div class="song-selection">
+                    <div class="song-option">
+                        <input type="radio" id="song1" name="practice-song" value="bloemenland">
+                        <label for="song1">Het Bloemenland</label>
+                    </div>
+                    <div class="song-option">
+                        <input type="radio" id="song2" name="practice-song" value="samenlicht">
+                        <label for="song2">Samen in het Licht</label>
+                    </div>
+                    <div class="song-option">
+                        <input type="radio" id="song3" name="practice-song" value="groteavontuur">
+                        <label for="song3">Het Grote Avontuur</label>
+                    </div>
+                </div>
+                
+                <div class="practice-controls">
+                    <button class="practice-btn" id="startPractice" disabled>Start met Oefenen</button>
+                    <button class="practice-btn" id="stopPractice" disabled>Stop Oefenen</button>
+                </div>
+            </div>
+            
+            <!-- Oefenweergave -->
+            <div class="lyrics-practice" id="practiceView">
+                <div class="current-song-title" id="currentSongTitle"></div>
+                
+                <div class="practice-player">
+                    <audio controls id="practiceAudio"></audio>
+                </div>
+                
+                <div class="lyrics-content" id="practiceLyrics"></div>
+            </div>
+            
+            <!-- Standaard songtekst weergave (verborgen in oefenmodus) -->
+            <div id="standardLyricsView">
+                <!-- Lied 1: Het Bloemenland -->
+                <div class="lyrics-section">
+                    <h3>Het Bloemenland</h3>
+                    <div class="lyrics-content" id="lyrics-bloemenland">
 <span class="character">Couplet 1 (Iedereen)</span>
 In het bos waar 's ochtends de zon weer verschijnt,
 Waar het dauwlicht danst en het zachtjes geurt,
@@ -657,7 +856,7 @@ Met bloemen die troost geven, keer op keer, bemind.
 En als de maan haar zilveren stralen spreidt,
 Worden de bloemen tot sterren gewijd.
 De feeën fluisteren dankbaar zacht:
-"Jullie hebben ons weer blij gemaakt."
+Jullie hebben ons weer blij gemaakt.
 
 <div class="refrain">
 <span class="character">Laatste Refrein (Iedereen)</span>
@@ -666,13 +865,13 @@ Kunnen de feeën weer lachen en dromen doen.
 Ze zweven en zingen, hand in hand,
 In het allermooiste bloemenland. (lang vasthouden)
 </div>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Lied 2: Samen in het Licht -->
-            <div class="lyrics-section">
-                <h3>Samen in het Licht</h3>
-                <div class="lyrics-content">
+                
+                <!-- Lied 2: Samen in het Licht -->
+                <div class="lyrics-section">
+                    <h3>Samen in het Licht</h3>
+                    <div class="lyrics-content" id="lyrics-samenlicht">
 <span class="character">Intro (Iedereen)</span>
 De ochtend breekt, het wonder start,
 Wij zingen samen, hand in hand, één hart.
@@ -684,16 +883,20 @@ Wij lopen door sneeuw en door dromen,
 Wij voelen wat nog gaat komen.
 Met vrienden die naast ons staan,
 Kunnen wij alles aan.
-                    
+
 <span class="character">Keet</span>
 Het lot beweegt, het fluistert zacht,
+
 <span class="character">Naoual</span>
 Wij leiden dromen door de nacht,
+
 <span class="character">Sanne</span>
 Er wordt op ons gewaaaaaaacht,
+
 <span class="character">Iedereen</span>
 Wij horen sterren, wij voelen tijd,
 Het lot geeft hoop en zekerheid.
+
 <div class="refrain">
 <span class="character">Refrein (Iedereen)</span>
 Samen staan wij sterk vandaag,
@@ -702,10 +905,10 @@ Wij zoeken licht en vinden kracht,
 Wij zingen door de hele nacht.
 </div>
 
-<span class="character">Solo 2 (Reaven (Karen / Meesterdief – Bob 456)</span>
+<span class="character">Solo 2 (Reaven (Karen / Meesterdief – Bob 456))</span>
 
 <span class="character">Reaven</span>
-Ik was te lang een schaduw, te lang verdwaald, alleen, 
+Ik was te lang een schaduw, te lang verdwaald, alleen,
 Maar nu kijk ik naar jullie… en eindelijk zie ik weer wat mooi kan zijn.
 Ik wil nooit meer slecht zijn — echt waar, het spijt me diep,
 Ik kies nu voor het licht… en voor de vrienden die ik liep.
@@ -718,24 +921,26 @@ Wij zoeken licht en vinden kracht,
 Wij zingen door de hele nacht.
 </div>
 
+<div class="bridge">
 <span class="character">Bridge (Iedereen)</span>
 Oooooh… de toekomst wordt warm en klaar,
 Oooooh… wij dragen elkaar.
 Oooooh… het licht dat in ons leeft,
 Is sterker dan de nacht die beeft.
+</div>
 
 <span class="character">Grote finale (Iedereen)</span>
 Wij kiezen het licht, wij bouwen het nieuw,
 Wij lopen als één, met liefde als vuul.
 Geen angst, geen pijn, geen duister meer,
 Wij zijn het wonder… en samen, samen steeds weer!
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Lied 3: Het Grote Avontuur -->
-            <div class="lyrics-section">
-                <h3>Het Grote Avontuur</h3>
-                <div class="lyrics-content">
+                
+                <!-- Lied 3: Het Grote Avontuur -->
+                <div class="lyrics-section">
+                    <h3>Het Grote Avontuur</h3>
+                    <div class="lyrics-content" id="lyrics-groteavontuur">
 <span class="character">(Iedereen zingt samen)</span>
 
 <span class="character">Couplet 1</span>
@@ -787,6 +992,7 @@ En samen zijn we… hoog!
 </div>
 
 <span class="character">(Vrolijk slotakkoord. Grote feestelijke eindpose.) 🎉✨</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -837,6 +1043,102 @@ En samen zijn we… hoog!
                     fullscreenScript.classList.remove('active');
                     document.body.style.overflow = 'auto';
                 }
+            });
+
+            // Songtekst oefenmodus functionaliteit
+            const songOptions = document.querySelectorAll('input[name="practice-song"]');
+            const startPracticeBtn = document.getElementById('startPractice');
+            const stopPracticeBtn = document.getElementById('stopPractice');
+            const practiceView = document.getElementById('practiceView');
+            const standardLyricsView = document.getElementById('standardLyricsView');
+            const practiceAudio = document.getElementById('practiceAudio');
+            const practiceLyrics = document.getElementById('practiceLyrics');
+            const currentSongTitle = document.getElementById('currentSongTitle');
+
+            // Song informatie
+            const songs = {
+                bloemenland: {
+                    title: "Het Bloemenland",
+                    audio: "Het Bloemenland.mp3",
+                    lyrics: document.getElementById('lyrics-bloemenland').innerHTML
+                },
+                samenlicht: {
+                    title: "Samen in het Licht", 
+                    audio: "Samen in het Licht (Faster).mp3",
+                    lyrics: document.getElementById('lyrics-samenlicht').innerHTML
+                },
+                groteavontuur: {
+                    title: "Het Grote Avontuur",
+                    audio: "Het Grote Avontuur.mp3", 
+                    lyrics: document.getElementById('lyrics-groteavontuur').innerHTML
+                }
+            };
+
+            // Luister naar song selectie
+            songOptions.forEach(option => {
+                option.addEventListener('change', function() {
+                    startPracticeBtn.disabled = !this.checked;
+                });
+            });
+
+            // Start oefenmodus
+            startPracticeBtn.addEventListener('click', function() {
+                const selectedSong = document.querySelector('input[name="practice-song"]:checked');
+                if (!selectedSong) return;
+
+                const song = songs[selectedSong.value];
+                
+                // Update oefenweergave
+                currentSongTitle.textContent = song.title;
+                practiceAudio.src = song.audio;
+                practiceLyrics.innerHTML = song.lyrics;
+                
+                // Toon oefenweergave, verberg standaard weergave
+                practiceView.classList.add('active');
+                standardLyricsView.style.display = 'none';
+                
+                // Activeer stop knop
+                stopPracticeBtn.disabled = false;
+                
+                // Start audio automatisch
+                practiceAudio.play().catch(e => {
+                    console.log('Autoplay werd geblokkeerd:', e);
+                    // Toon een bericht aan de gebruiker
+                    alert("Klik op de play knop om het lied te starten. Sommige browsers blokkeren autoplay.");
+                });
+                
+                // Scroll naar oefenweergave
+                practiceView.scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // Stop oefenmodus
+            stopPracticeBtn.addEventListener('click', function() {
+                // Stop audio
+                practiceAudio.pause();
+                practiceAudio.currentTime = 0;
+                
+                // Verberg oefenweergave, toon standaard weergave
+                practiceView.classList.remove('active');
+                standardLyricsView.style.display = 'block';
+                
+                // Reset selectie
+                songOptions.forEach(option => option.checked = false);
+                startPracticeBtn.disabled = true;
+                stopPracticeBtn.disabled = true;
+            });
+
+            // Reset oefenmodus wanneer audio eindigt
+            practiceAudio.addEventListener('ended', function() {
+                // Optioneel: automatisch resetten wanneer lied eindigt
+                // stopPracticeBtn.click();
+            });
+            
+            // Dansvideo knop functionaliteit (plaatshouder)
+            document.querySelectorAll('.dance-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert("De dansvideo's worden binnenkort toegevoegd aan de website!");
+                });
             });
         });
     </script>
